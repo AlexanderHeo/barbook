@@ -1,5 +1,8 @@
-function HomePage() {
-  return <h1>Initial Install</h1>;
+export default function Home() {
+  return (
+    <>
+      <h1>Bar Book</h1>
+      <h3>Initial Install</h3>
+    </>
+  );
 }
-
-export default HomePage;
