@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,4 +5,136 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Spirit {
+  id      Int     @id @default(autoincrement())
+  name    String  @unique
+  type    String
+  spirit1 Recipe? @relation("Spirit1")
+  spirit2 Recipe? @relation("Spirit2")
+  spirit3 Recipe? @relation("Spirit3")
+  spirit4 Recipe? @relation("Spirit4")
+}
+
+model Sour {
+  id    Int     @id @default(autoincrement())
+  name  String  @unique
+  type  String
+  sour1 Recipe? @relation("Sour1")
+  sour2 Recipe? @relation("Sour2")
+}
+
+model Sweet {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  type   String
+  sweet1 Recipe? @relation("Sweet1")
+  sweet2 Recipe? @relation("Sweet2")
+}
+
+model Mixer {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  type   String
+  mixer1 Recipe? @relation("Mixer1")
+  mixer2 Recipe? @relation("Mixer2")
+  mixer3 Recipe? @relation("Mixer3")
+}
+
+model Size {
+  id          Int     @id @default(autoincrement())
+  size        Decimal @unique
+  mixer1Size  Recipe? @relation("Mixer1Size")
+  mixer2Size  Recipe? @relation("Mixer2Size")
+  mixer3Size  Recipe? @relation("Mixer3Size")
+  sour1Size   Recipe? @relation("Sour1Size")
+  sour2Size   Recipe? @relation("Sour2Size")
+  spirit1Size Recipe? @relation("Spirit1Size")
+  spirit2Size Recipe? @relation("Spirit2Size")
+  spirit3Size Recipe? @relation("Spirit3Size")
+  spirit4Size Recipe? @relation("Spirit4Size")
+  sweet1Size  Recipe? @relation("Sweet1Size")
+  sweet2Size  Recipe? @relation("Sweet2Size")
+}
+
+model Method {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique
+  method Recipe? @relation("Method")
+}
+
+model Ice {
+  id   Int     @id @default(autoincrement())
+  name String  @unique
+  ice  Recipe? @relation("Ice")
+}
+
+model Glassware {
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  glasware Recipe? @relation("Glassware")
+}
+
+model Garnish {
+  id       Int     @id @default(autoincrement())
+  name     String  @unique
+  glasware Recipe? @relation("Garnish")
+}
+
+model Recipe {
+  id            Int       @id @default(autoincrement())
+  name          String    @unique
+  spirit1Id     Int       @unique
+  spirit1SizeId Int       @unique
+  sour1Id       Int       @unique
+  sour1SizeId   Int       @unique
+  sweet1Id      Int       @unique
+  sweet1SizeId  Int       @unique
+  garnishId     Int       @unique
+  glasswareId   Int       @unique
+  iceId         Int       @unique
+  methodId      Int       @unique
+  mixer1Id      Int       @unique
+  mixer1SizeId  Int       @unique
+  mixer2Id      Int       @unique
+  mixer2SizeId  Int       @unique
+  mixer3Id      Int       @unique
+  mixer3SizeId  Int       @unique
+  sour2Id       Int       @unique
+  sour2SizeId   Int       @unique
+  spirit2Id     Int       @unique
+  spirit2SizeId Int       @unique
+  spirit3Id     Int       @unique
+  spirit3SizeId Int       @unique
+  spirit4Id     Int       @unique
+  spirit4SizeId Int       @unique
+  sweet2Id      Int       @unique
+  sweet2SizeId  Int       @unique
+  garnish       Garnish   @relation("Garnish", fields: [garnishId], references: [id])
+  glassware     Glassware @relation("Glassware", fields: [glasswareId], references: [id])
+  ice           Ice       @relation("Ice", fields: [iceId], references: [id])
+  method        Method    @relation("Method", fields: [methodId], references: [id])
+  mixer1        Mixer     @relation("Mixer1", fields: [mixer1Id], references: [id])
+  mixer1Size    Size      @relation("Mixer1Size", fields: [mixer1SizeId], references: [id])
+  mixer2        Mixer     @relation("Mixer2", fields: [mixer2Id], references: [id])
+  mixer2Size    Size      @relation("Mixer2Size", fields: [mixer2SizeId], references: [id])
+  mixer3        Mixer     @relation("Mixer3", fields: [mixer3Id], references: [id])
+  mixer3Size    Size      @relation("Mixer3Size", fields: [mixer3SizeId], references: [id])
+  sour1         Sour      @relation("Sour1", fields: [sour1Id], references: [id])
+  sour1Size     Size      @relation("Sour1Size", fields: [sour1SizeId], references: [id])
+  sour2         Sour      @relation("Sour2", fields: [sour2Id], references: [id])
+  sour2Size     Size      @relation("Sour2Size", fields: [sour2SizeId], references: [id])
+  spirit1       Spirit    @relation("Spirit1", fields: [spirit1Id], references: [id])
+  spirit1Size   Size      @relation("Spirit1Size", fields: [spirit1SizeId], references: [id])
+  spirit2       Spirit    @relation("Spirit2", fields: [spirit2Id], references: [id])
+  spirit2Size   Size      @relation("Spirit2Size", fields: [spirit2SizeId], references: [id])
+  spirit3       Spirit    @relation("Spirit3", fields: [spirit3Id], references: [id])
+  spirit3Size   Size      @relation("Spirit3Size", fields: [spirit3SizeId], references: [id])
+  spirit4       Spirit    @relation("Spirit4", fields: [spirit4Id], references: [id])
+  spirit4Size   Size      @relation("Spirit4Size", fields: [spirit4SizeId], references: [id])
+  sweet1        Sweet     @relation("Sweet1", fields: [sweet1Id], references: [id])
+  sweet1Size    Size      @relation("Sweet1Size", fields: [sweet1SizeId], references: [id])
+  sweet2        Sweet     @relation("Sweet2", fields: [sweet2Id], references: [id])
+  sweet2Size    Size      @relation("Sweet2Size", fields: [sweet2SizeId], references: [id])
 }
