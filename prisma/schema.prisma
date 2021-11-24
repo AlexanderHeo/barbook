@@ -15,6 +15,13 @@ model Spirit {
   spirit2 Recipe? @relation("Spirit2")
   spirit3 Recipe? @relation("Spirit3")
   spirit4 Recipe? @relation("Spirit4")
+  spirit5 Recipe? @relation("Spirit5")
+}
+
+model Aromatics {
+  id Int @id @default(autoincrement())
+  name String @unique
+  aromatic Recipe? @relation("Aromatic")
 }
 
 model Sour {
@@ -43,19 +50,21 @@ model Mixer {
 }
 
 model Size {
-  id          Int     @id @default(autoincrement())
-  size        Decimal @unique
-  mixer1Size  Recipe? @relation("Mixer1Size")
-  mixer2Size  Recipe? @relation("Mixer2Size")
-  mixer3Size  Recipe? @relation("Mixer3Size")
-  sour1Size   Recipe? @relation("Sour1Size")
-  sour2Size   Recipe? @relation("Sour2Size")
-  spirit1Size Recipe? @relation("Spirit1Size")
-  spirit2Size Recipe? @relation("Spirit2Size")
-  spirit3Size Recipe? @relation("Spirit3Size")
-  spirit4Size Recipe? @relation("Spirit4Size")
-  sweet1Size  Recipe? @relation("Sweet1Size")
-  sweet2Size  Recipe? @relation("Sweet2Size")
+  id           Int     @id @default(autoincrement())
+  size         Decimal @unique
+  aromaticSize Recipe? @relation("AromaticSize")
+  mixer1Size   Recipe? @relation("Mixer1Size")
+  mixer2Size   Recipe? @relation("Mixer2Size")
+  mixer3Size   Recipe? @relation("Mixer3Size")
+  sour1Size    Recipe? @relation("Sour1Size")
+  sour2Size    Recipe? @relation("Sour2Size")
+  spirit1Size  Recipe? @relation("Spirit1Size")
+  spirit2Size  Recipe? @relation("Spirit2Size")
+  spirit3Size  Recipe? @relation("Spirit3Size")
+  spirit4Size  Recipe? @relation("Spirit4Size")
+  spirit5Size  Recipe? @relation("Spirit5Size")
+  sweet1Size   Recipe? @relation("Sweet1Size")
+  sweet2Size   Recipe? @relation("Sweet2Size")
 }
 
 model Method {
@@ -83,58 +92,66 @@ model Garnish {
 }
 
 model Recipe {
-  id            Int       @id @default(autoincrement())
-  name          String    @unique
-  spirit1Id     Int       @unique
-  spirit1SizeId Int       @unique
-  sour1Id       Int       @unique
-  sour1SizeId   Int       @unique
-  sweet1Id      Int       @unique
-  sweet1SizeId  Int       @unique
-  garnishId     Int       @unique
-  glasswareId   Int       @unique
-  iceId         Int       @unique
-  methodId      Int       @unique
-  mixer1Id      Int       @unique
-  mixer1SizeId  Int       @unique
-  mixer2Id      Int       @unique
-  mixer2SizeId  Int       @unique
-  mixer3Id      Int       @unique
-  mixer3SizeId  Int       @unique
-  sour2Id       Int       @unique
-  sour2SizeId   Int       @unique
-  spirit2Id     Int       @unique
-  spirit2SizeId Int       @unique
-  spirit3Id     Int       @unique
-  spirit3SizeId Int       @unique
-  spirit4Id     Int       @unique
-  spirit4SizeId Int       @unique
-  sweet2Id      Int       @unique
-  sweet2SizeId  Int       @unique
-  garnish       Garnish   @relation("Garnish", fields: [garnishId], references: [id])
-  glassware     Glassware @relation("Glassware", fields: [glasswareId], references: [id])
-  ice           Ice       @relation("Ice", fields: [iceId], references: [id])
-  method        Method    @relation("Method", fields: [methodId], references: [id])
-  mixer1        Mixer     @relation("Mixer1", fields: [mixer1Id], references: [id])
-  mixer1Size    Size      @relation("Mixer1Size", fields: [mixer1SizeId], references: [id])
-  mixer2        Mixer     @relation("Mixer2", fields: [mixer2Id], references: [id])
-  mixer2Size    Size      @relation("Mixer2Size", fields: [mixer2SizeId], references: [id])
-  mixer3        Mixer     @relation("Mixer3", fields: [mixer3Id], references: [id])
-  mixer3Size    Size      @relation("Mixer3Size", fields: [mixer3SizeId], references: [id])
-  sour1         Sour      @relation("Sour1", fields: [sour1Id], references: [id])
-  sour1Size     Size      @relation("Sour1Size", fields: [sour1SizeId], references: [id])
-  sour2         Sour      @relation("Sour2", fields: [sour2Id], references: [id])
-  sour2Size     Size      @relation("Sour2Size", fields: [sour2SizeId], references: [id])
-  spirit1       Spirit    @relation("Spirit1", fields: [spirit1Id], references: [id])
-  spirit1Size   Size      @relation("Spirit1Size", fields: [spirit1SizeId], references: [id])
-  spirit2       Spirit    @relation("Spirit2", fields: [spirit2Id], references: [id])
-  spirit2Size   Size      @relation("Spirit2Size", fields: [spirit2SizeId], references: [id])
-  spirit3       Spirit    @relation("Spirit3", fields: [spirit3Id], references: [id])
-  spirit3Size   Size      @relation("Spirit3Size", fields: [spirit3SizeId], references: [id])
-  spirit4       Spirit    @relation("Spirit4", fields: [spirit4Id], references: [id])
-  spirit4Size   Size      @relation("Spirit4Size", fields: [spirit4SizeId], references: [id])
-  sweet1        Sweet     @relation("Sweet1", fields: [sweet1Id], references: [id])
-  sweet1Size    Size      @relation("Sweet1Size", fields: [sweet1SizeId], references: [id])
-  sweet2        Sweet     @relation("Sweet2", fields: [sweet2Id], references: [id])
-  sweet2Size    Size      @relation("Sweet2Size", fields: [sweet2SizeId], references: [id])
+  id             Int       @id @default(autoincrement())
+  name           String    @unique
+  spirit1Id      Int       @unique
+  spirit1SizeId  Int       @unique
+  spirit2Id      Int       @unique
+  spirit2SizeId  Int       @unique
+  spirit3Id      Int       @unique
+  spirit3SizeId  Int       @unique
+  spirit4Id      Int       @unique
+  spirit4SizeId  Int       @unique
+  spirit5Id      Int       @unique
+  spirit5SizeId  Int       @unique
+  aromaticId     Int       @unique
+  aromaticSizeId Int       @unique
+  sour1Id        Int       @unique
+  sour1SizeId    Int       @unique
+  sour2Id        Int       @unique
+  sour2SizeId    Int       @unique
+  sweet1Id       Int       @unique
+  sweet1SizeId   Int       @unique
+  sweet2Id       Int       @unique
+  sweet2SizeId   Int       @unique
+  mixer1Id       Int       @unique
+  mixer1SizeId   Int       @unique
+  mixer2Id       Int       @unique
+  mixer2SizeId   Int       @unique
+  mixer3Id       Int       @unique
+  mixer3SizeId   Int       @unique
+  iceId          Int       @unique
+  glasswareId    Int       @unique
+  garnishId      Int       @unique
+  methodId       Int       @unique
+  aromatic       Aromatics @relation("Aromatic", fields: [aromaticId], references: [id])
+  aromaticSize   Size      @relation("AromaticSize", fields: [aromaticSizeId], references: [id])
+  garnish        Garnish   @relation("Garnish", fields: [garnishId], references: [id])
+  glassware      Glassware @relation("Glassware", fields: [glasswareId], references: [id])
+  ice            Ice       @relation("Ice", fields: [iceId], references: [id])
+  method         Method    @relation("Method", fields: [methodId], references: [id])
+  mixer1         Mixer     @relation("Mixer1", fields: [mixer1Id], references: [id])
+  mixer1Size     Size      @relation("Mixer1Size", fields: [mixer1SizeId], references: [id])
+  mixer2         Mixer     @relation("Mixer2", fields: [mixer2Id], references: [id])
+  mixer2Size     Size      @relation("Mixer2Size", fields: [mixer2SizeId], references: [id])
+  mixer3         Mixer     @relation("Mixer3", fields: [mixer3Id], references: [id])
+  mixer3Size     Size      @relation("Mixer3Size", fields: [mixer3SizeId], references: [id])
+  sour1          Sour      @relation("Sour1", fields: [sour1Id], references: [id])
+  sour1Size      Size      @relation("Sour1Size", fields: [sour1SizeId], references: [id])
+  sour2          Sour      @relation("Sour2", fields: [sour2Id], references: [id])
+  sour2Size      Size      @relation("Sour2Size", fields: [sour2SizeId], references: [id])
+  spirit1        Spirit    @relation("Spirit1", fields: [spirit1Id], references: [id])
+  spirit1Size    Size      @relation("Spirit1Size", fields: [spirit1SizeId], references: [id])
+  spirit2        Spirit    @relation("Spirit2", fields: [spirit2Id], references: [id])
+  spirit2Size    Size      @relation("Spirit2Size", fields: [spirit2SizeId], references: [id])
+  spirit3        Spirit    @relation("Spirit3", fields: [spirit3Id], references: [id])
+  spirit3Size    Size      @relation("Spirit3Size", fields: [spirit3SizeId], references: [id])
+  spirit4        Spirit    @relation("Spirit4", fields: [spirit4Id], references: [id])
+  spirit4Size    Size      @relation("Spirit4Size", fields: [spirit4SizeId], references: [id])
+  spirit5        Spirit    @relation("Spirit5", fields: [spirit5Id], references: [id])
+  spirit5Size    Size      @relation("Spirit5Size", fields: [spirit5SizeId], references: [id])
+  sweet1         Sweet     @relation("Sweet1", fields: [sweet1Id], references: [id])
+  sweet1Size     Size      @relation("Sweet1Size", fields: [sweet1SizeId], references: [id])
+  sweet2         Sweet     @relation("Sweet2", fields: [sweet2Id], references: [id])
+  sweet2Size     Size      @relation("Sweet2Size", fields: [sweet2SizeId], references: [id])
 }
