@@ -28,15 +28,7 @@ model RecipeIngredients {
   recipe_id     Int
   ingredient    Ingredient @relation(fields: [ingredient_id], references: [id])
   ingredient_id Int
-  size          Size       @relation(fields: [size_id], references: [id])
-  size_id       Int
-}
-
-model Size {
-  id     Int    @id @default(autoincrement())
-  amount String @unique
-  size   RecipeIngredients[]
-
+  size          String
 }
 
 model Ingredient {
