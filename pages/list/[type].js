@@ -2,7 +2,6 @@ import Layout from '../../components/layout';
 import { getListData, getListPaths } from '../../lib/listData.js';
 
 export default function ListType({ listData }) {
-  console.log('listData:', listData);
   return (
     <Layout>
       <ul>
