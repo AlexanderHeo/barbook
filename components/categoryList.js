@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from './list.module.css';
+import styles from './categoryList.module.css';
 
 export default function List({ title, children }) {
   return (

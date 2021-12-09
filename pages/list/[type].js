@@ -1,18 +1,11 @@
+import DrinkList from '../../components/drinkList';
 import Layout from '../../components/layout';
-import { getListData, getListPaths } from '../../lib/listData.js';
+import { getListData, getListPaths } from '../../lib/categoryListData.js';
 
-export default function ListType({ listData }) {
+export default function ListType({ categoryListData }) {
   return (
     <Layout>
-      <ul>
-        {listData.drinkList.map((drink) => {
-          return (
-            <li key={drink.id}>
-              {drink.name.replace(/(^\w|\s\w)/g, (m) => m.toUpperCase())}
-            </li>
-          );
-        })}
-      </ul>
+      <DrinkList>{categoryListData}</DrinkList>
     </Layout>
   );
 }
@@ -26,10 +19,10 @@ export function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const listData = await getListData(params.type);
+  const categoryListData = await getListData(params.type);
   return {
     props: {
-      listData,
+      categoryListData,
     },
   };
 }

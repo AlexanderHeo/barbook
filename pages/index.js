@@ -1,6 +1,6 @@
 import Head from 'next/head';
+import CategoryList from '../components/categoryList';
 import Layout, { siteTitle } from '../components/layout';
-import List from '../components/list';
 import { categoryList, spiritList } from '../lib/list';
 
 export default function Home() {
@@ -9,8 +9,8 @@ export default function Home() {
       <Head>
         <title>{siteTitle}</title>
       </Head>
-      <List title='List by Spirit Type'>{spiritList}</List>
-      <List title='List by Category'>{categoryList}</List>
+      <CategoryList title='List by Spirit Type'>{spiritList}</CategoryList>
+      <CategoryList title='List by Category'>{categoryList}</CategoryList>
     </Layout>
   );
 }
