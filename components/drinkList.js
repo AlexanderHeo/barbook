@@ -4,7 +4,7 @@ import styles from './drinkList.module.css';
 export default function List({ children }) {
   return (
     <>
-      <h3 className={styles.header3}>{children.type}</h3>
+      <h3 className={styles.header}>{children.type}</h3>
       <div className={styles.wrapper}>
         {children.drinkList.map((drink) => {
           return (
